@@ -4,7 +4,9 @@
 Ce projet est réalisé à des fins pédagogiques.
 
 # Initialisation de l'un des deux dossiers
-1. cd CRUD users | cd bookings
+1. ```bash
+    cd CRUD users | cd bookings
+     ```
 2. Instalation des dépendences
     ```bash
     npm i
