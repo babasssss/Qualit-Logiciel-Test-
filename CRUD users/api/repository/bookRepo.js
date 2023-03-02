@@ -4,7 +4,7 @@ export default (Book) => {
     new Book('9782744005084', 'UML et C++', 'Richard C. Lee, William M. Tepfenhart', 'CampusPress', 'FR', 29.95),
     new Book('9782746035966', 'Cree su primer sitio web con dreamweaver 8', 'B.A. GUERIN', 'ENI', 'ES', 10.02)
   ];
-  9782879017198
+
   const listBooks = () => {
     return books;
   };

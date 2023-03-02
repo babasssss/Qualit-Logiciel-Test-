@@ -1,45 +1,48 @@
+#EN
 # Node JS - Test Driven Development 
 
 This project is made for pedagogic purposes.
 
-## Requirements
-- NodeJS engine
+# TODO
 
-## The package contains
-- Express : The NodeJS server framework
-- Mocha : test framework for NodeJS
-- Chai, Chai-http : API test and assertions
-- C8 : test coverage audit and reporting
+1. Add the User class into your model
+Don't forget to import it into index.js !
 
-## Use it
+2. Create the userRepo into the repositories
+Don't forget to import it into index.js !
 
-Install dependencies
+3. Add users mocks to fit your tests
 
-```bash
-npm i
-```
+3. Create the /users CRUD
+TIP : Get inspired with the /books one
 
-Enjoy it !
+IMPORTANT : Règles métier à prendre en compte
+- L'identifiant, de type UUID, sera généré aléatoirement côté backend
+- Date (format anglais uniquement) : YYYY-MM-DD
+- Téléphone (français uniquement) : (+33 ou 0 ou 0033) suivi de exactement 9 chiffres
 
-## Test it
 
-Test with coverage audit
 
-```bash
-npm test
-```
+#FR
+# Node JS - Développement piloté par les tests 
 
-Test driven developement
+Ce projet est réalisé à des fins pédagogiques.
 
-```bash
-npm run tdd
-```
+# À faire
 
-Will generate a report into the terminal
-For more readable reportings, check the doc : https://github.com/bcoe/c8
+1. Ajoutez la classe User dans votre modèle
+N’oubliez pas de l’importer dans l’index.js !
 
-## Further information
+2. Créez le userRepo dans les référentiels
+N’oubliez pas de l’importer dans l’index.js !
 
-Mocha test framework : https://mochajs.org/#getting-started
-Chai assertions : https://www.chaijs.com/api/assert/
-Test coverage options and reportings : https://github.com/bcoe/c8
+3. Ajoutez des simulations d’utilisateurs pour s’adapter à vos tests
+
+3. Créez le CRUD /users
+ASTUCE : Inspirez-vous avec le /books
+
+IMPORTANT : Règles métier à prendre en compte
+- L’identifiant, de type UUID, sera généré aléatoirement côté backend
+- Date (format anglais uniquement) : AAAA-MM-DD
+- Téléphone (français uniquement) : (+33 ou 0 ou 0033) suivi de exactement 9 chiffres
+

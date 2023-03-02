@@ -1,11 +1,9 @@
 import chai from 'chai';
 import chaiHttp from 'chai-http';
-//import api from '../index.js';
-
-// IMPORTANT : For Mocha working, always use function () {}
-// (never () => {})
+import api from '../index.js';
 
 chai.use(chaiHttp);
+
 
 describe('Chez moi ça marche', function () {
   it('should return a success response', function (done) {

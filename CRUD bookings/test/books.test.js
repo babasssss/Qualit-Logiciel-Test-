@@ -55,9 +55,7 @@ describe('Books', function () {
       done();
     });
   });
-  it('POST /books should return a bad request if ISBN malformed');
-  it('POST /books should return a bad request if price malformed');
-  it('POST /books should return a bad request if lang code malformed');
+
   it('GET /books/:id should return a success response with found book', function (done) {
     chai.request(api)
     .get('/books/9782746035966')
@@ -134,9 +132,7 @@ describe('Books', function () {
       done();
     });
   });
-  it('PUT /books/:id should return a bad request if ISBN malformed');
-  it('PUT /books/:id should return a bad request if price malformed');
-  it('PUT /books/:id should return a bad request if lang code malformed');
+
   it('DELETE /books/:id should return a success response', function (done) {
     chai.request(api)
     .delete('/books/9782744005084')
