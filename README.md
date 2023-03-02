@@ -33,11 +33,12 @@ N’oubliez pas de l’importer dans l’index.js !
 3. Créez le CRUD /users
 ASTUCE : Inspirez-vous avec le /books
 
+```bash
 IMPORTANT : Règles métier à prendre en compte
 - L’identifiant, de type UUID, sera généré aléatoirement côté backend
 - Date (format anglais uniquement) : AAAA-MM-DD
 - Téléphone (français uniquement) : (+33 ou 0 ou 0033) suivi de exactement 9 chiffres
-
+```
 ## PARTIE 2 -  À faire  -> CRUD bookings
 1. Ajoutez la classe Booking dans votre modèle
 N’oubliez pas de l’importer dans l’index.js !
@@ -52,9 +53,11 @@ CONSEILS:
 - Laissez-vous inspirer par le /books
 - Utiliser momentjs pour manipuler les dates
 
+```bash
 IMPORTANT : Règles métier à prendre en compte
 - L’identifiant, de type UUID, sera généré aléatoirement côté backend
 - Date de location / Date de retour (format anglais uniquement) : YYYY-MM-DD
 - Lieu de la date < Date retour
 - L’utilisateur doit être enregistré en BDD
 - Un livre / film peut être loué uniquement s’il ne l’est pas déjà
+```
