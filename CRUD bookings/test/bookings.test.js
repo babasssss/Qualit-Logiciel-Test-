@@ -6,7 +6,7 @@ chai.use(chaiHttp);
 
 // IMPORTANT : For Mocha working, always use function () {}
 // (never () => {})
-describe('Bookingings', function () {
+describe('Bookings', function () {
   it('GET /bookings should return a success response with all bookings', function (done) {
     chai.request(api)
     .get('/bookings')
@@ -17,7 +17,7 @@ describe('Bookingings', function () {
           {
             idBooking: '1236545796533',
             rentDate: '2023-03-02',
-            returnDate: '2023-06-21',
+            returnDate: '2023-06-21', 
             book: '9782744005084',
             user: '9782743007080',
           },
@@ -38,7 +38,7 @@ describe('Bookingings', function () {
       idBooking: '1234567345843',// TODO MIDIFIER DONNEES POUR ADD EN POST
       rentDate: '2019-08-15',
       returnDate: '2019-11-29',
-      book: 'Film',
+      book: '9782746035966',
       user: '9782743007080',
     };
     chai.request(api)
@@ -55,7 +55,7 @@ describe('Bookingings', function () {
 
   it('GET /bookings/:id should return a success response with found booking', function (done) {
     chai.request(api)
-    .get('/bookings/9782746035966')
+    .get('/bookings/1236545796533')
     .end((_, res) => {
       chai.expect(res.statusCode).to.equal(200);
       chai.expect(res.body).to.deep.equal({
@@ -63,7 +63,7 @@ describe('Bookingings', function () {
           idBooking: '1236545796533',
           rentDate: '2023-03-02',
           returnDate: '2023-06-21',
-          book: 'Livre',
+          book: '9782744005084',
           user: '9782743007080',
         }
       });
@@ -76,7 +76,7 @@ describe('Bookingings', function () {
     .end((_, res) => {
       chai.expect(res.statusCode).to.equal(404);
       chai.expect(res.body).to.deep.equal({
-        error: 'Booking 1234567899999 not found'
+        error: 'Bookings 1234567899999 not found'
       });
       done();
     });
@@ -86,7 +86,7 @@ describe('Bookingings', function () {
       idBooking: '1236545796533',
       rentDate: '2023-03-02',
       returnDate: '2023-06-21',
-      book: 'FILM',// Modify Livre in FILM
+      book: '9782746035966',
       user: '9782743007080',
     };
     chai.request(api)
@@ -99,7 +99,7 @@ describe('Bookingings', function () {
           idBooking: '1236545796533',
           rentDate: '2023-03-02',
           returnDate: '2023-06-21',
-          book: 'FILM',// Modify Livre in FILM
+          book: '9782746035966',// Modify Livre in FILM
           user: '9782743007080',
         }
       });
@@ -111,7 +111,7 @@ describe('Bookingings', function () {
       idBooking: '354567345678',
       rentDate: '2023-03-02',
       returnDate: '2023-06-21',
-      book: 'FILM',// Modify Livre in FILM
+      book: '9782746035966',// Modify Livre in FILM
       user: '9782743007080',
     };
     chai.request(api)
@@ -137,7 +137,7 @@ describe('Bookingings', function () {
             idBooking: '1236545796533',
             rentDate: '2023-03-02',
             returnDate: '2023-06-21',
-            book: 'Livre',
+            book: '9782744005084',
             user: '9782743007080',
           }
         }
@@ -151,7 +151,7 @@ describe('Bookingings', function () {
     .end((_, res) => {
       chai.expect(res.statusCode).to.equal(404);
       chai.expect(res.body).to.deep.equal({
-        error: 'Booking 1234567899999 not found'
+        error: 'Bookings 1234567899999 not found'
       });
       done();
     });
