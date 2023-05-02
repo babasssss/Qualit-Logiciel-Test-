@@ -39,6 +39,8 @@ IMPORTANT : Règles métier à prendre en compte
 - Date (format anglais uniquement) : AAAA-MM-DD
 - Téléphone (français uniquement) : (+33 ou 0 ou 0033) suivi de exactement 9 chiffres
 ```
+
+
 ## PARTIE 2 -  À faire  -> CRUD bookings
 1. Ajoutez la classe Booking dans votre modèle
 N’oubliez pas de l’importer dans l’index.js !

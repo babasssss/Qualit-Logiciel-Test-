@@ -18,14 +18,14 @@ describe('Bookingings', function () {
             idBooking: '1236545796533',
             rentDate: '2023-03-02',
             returnDate: '2023-06-21',
-            book: 'Livre',
+            book: '9782744005084',
             user: '9782743007080',
           },
           {
             idBooking: '1234567345843',
             rentDate: '2019-08-15',
             returnDate: '2019-11-29',
-            book: 'Film',
+            book: '9782746035966',
             user: '9782743007080',
           }
         ]

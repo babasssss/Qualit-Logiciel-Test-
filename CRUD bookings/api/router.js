@@ -13,9 +13,9 @@ export default (controlers, app) => {
   app.put('/users/:id', controlers.userCtrl.updateUser);
   app.delete('/users/:id', controlers.userCtrl.deleteUser);
   //Route Bookings
-  app.get('/bookings', controlers.bookingCtrl.listBookings);
-  app.post('/bookings', controlers.bookingCtrl.createBooking);
-  app.get('/bookings/:id', controlers.bookingCtrl.getBooking);
-  app.put('/bookings/:id', controlers.bookingCtrl.updateBooking);
-  app.delete('/bookings/:id', controlers.bookingCtrl.deleteBooking);
+  app.get('/bookings', controlers.bookingsCtrl.listBookings);
+  app.post('/bookings', controlers.bookingsCtrl.createBookings);
+  app.get('/bookings/:id', controlers.bookingsCtrl.getBookings);
+  app.put('/bookings/:id', controlers.bookingsCtrl.updateBookings);
+  app.delete('/bookings/:id', controlers.bookingsCtrl.deleteBookings);
 }
