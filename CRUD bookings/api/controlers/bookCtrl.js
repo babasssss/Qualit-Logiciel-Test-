@@ -48,16 +48,15 @@ export default (bookRepo) => {
     const deletedBook = bookRepo.deleteBook(id);
 
     if (deletedBook) {
-      return res.send({
-        meta: {
-          _deleted: deletedBook
-        }
-      });
+      res.status(200).send({
+        message: 'Le livre a été supprimé avec succès',
+        data: deletedBook
+      })
+    } else {
+      res.status(404).send({
+        message: 'Le livre n\'a pas été trouvé'
+      })
     }
-
-    res.status(404).send({
-      error: `Book ${id} not found`
-    });
   }
 
   return {
