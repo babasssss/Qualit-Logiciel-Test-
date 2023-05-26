@@ -4,7 +4,7 @@ export default (bookingsRepo) => {
   const bookingRepo = repository.bookingRepo
   const userRepo = repository.userRepo;
 
-  function isValidDateFormat(date) {
+  function ValidDateFormat(date) {
     const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/; // Format YYYY-MM-DD
     return dateFormatRegex.test(date);
   }
@@ -39,7 +39,7 @@ export default (bookingsRepo) => {
           },
         });
       }
-      if (!isValidDateFormat(rentDate) || !isValidDateFormat(returnDate)) {
+      if (!ValidDateFormat(rentDate) || !ValidDateFormat(returnDate)) {
         return res.status(400).send({
           error: {
             message: "Invalid date format",
@@ -75,57 +75,86 @@ export default (bookingsRepo) => {
   
 
   const updateBookings = (req, res) => {
-    const id = req.params.id;
-    const bookings = bookingsRepo.updateBookings(id, req.body);
-
-    if (bookings) {
-      return res.send({
-        data: bookings
+    const { id } = req.params;
+    const { rentDate, returnDate, user } = req.body;
+  
+    // Vérifier si le livre est déjà loué pendant la période demandée
+    if (bookingRepo.isBookAlreadyRented(req.body.book, req.body.rentDate, req.body.returnDate)) {
+      console.log("Error: The book is already rented during the requested period.");
+      return res.status(400).send({
+        error: {
+          message: 'The book is already rented during the requested period.',
+        },
       });
     }
-
-    res.status(404).send({
-      error: `Bookings ${id} not found`
+  
+    // Vérifier si l'utilisateur existe
+    const existingUser = userRepo.getUserById(user);
+    if (!existingUser) {
+      console.log("Error: User not found");
+      return res.status(400).send({
+        error: {
+          message: "User not found",
+        },
+      });
+    }
+  
+    // Vérifier le format des dates
+    if (!ValidDateFormat(rentDate) || !ValidDateFormat(returnDate)) {
+      console.log("Error: Invalid date format");
+      return res.status(400).send({
+        error: {
+          message: "Invalid date format. Use 'YYYY-MM-DD' format.",
+        },
+      });
+    }
+  
+    // Vérifier la cohérence des dates
+    if (moment(rentDate).isSameOrAfter(moment(returnDate))) {
+      console.log("Error: Rent date must be before return date");
+      return res.status(400).send({
+        error: {
+          message: 'Rent date must be before return date',
+        },
+      });
+    }
+  
+    // Mettre à jour la réservation
+    const updatedBooking = bookingRepo.updateBooking(id, req.body);
+    res.status(200).send({
+      data: updatedBooking,
     });
   }
 
-  const getBookings = (req, res) => {
-    const id = req.params.id;
-    const bookings = bookingsRepo.findBookings(id);
 
-    if (bookings) {
-      return res.send({
-        data: bookings
+  const deleteBooking = (req, res) => {
+    const { id } = req.params;
+  
+    // Vérifier si la réservation existe
+    const existingBooking = bookingRepo.getBookingById(id);
+    if (!existingBooking) {
+      console.log("Error: Booking not found");
+      return res.status(400).send({
+        error: {
+          message: "Booking not found",
+        },
       });
     }
-
-    res.status(404).send({
-      error: `Bookings ${id} not found`
+  
+    // Supprimer la réservation
+    bookingRepo.deleteBooking(id);
+    res.status(200).send({
+      message: "Booking deleted successfully",
     });
-  }
+  };
 
-  const deleteBookings = (req, res) => {
-    const id = req.params.id;
-    const deletedBookings = bookingsRepo.deleteBookings(id);
 
-    if (deletedBookings) {
-      return res.send({
-        meta: {
-          _deleted: deletedBookings
-        }
-      });
-    }
-
-    res.status(404).send({
-      error: `Bookings ${id} not found`
-    });
-  }
 
   return {
     listBookings,
     createBookings,
     getBookings,
     updateBookings,
-    deleteBookings
+    deleteBooking
   };
 }
