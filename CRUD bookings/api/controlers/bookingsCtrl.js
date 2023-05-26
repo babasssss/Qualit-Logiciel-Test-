@@ -1,8 +1,8 @@
 import moment from 'moment';
 
 export default (bookingsRepo) => {
-  const bookingRepo = repository.bookingRepo
-  const userRepo = repository.userRepo;
+  const bookingRepo = bookingsRepo.bookingRepo
+  const userRepo = bookingsRepo.userRepo;
 
   function ValidDateFormat(date) {
     const dateFormatRegex = /^\d{4}-\d{2}-\d{2}$/; // Format YYYY-MM-DD
