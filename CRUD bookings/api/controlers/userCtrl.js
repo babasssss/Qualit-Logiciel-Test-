@@ -27,7 +27,7 @@ export default (userRepo) => {
       if (!ValidPhoneNumber(phone)) {
         return res.status(400).send({
           error: {
-            message: "Invalid phone number. The phone number must start with '+33', '0033' or '0', followed by exactly 9 digits.",
+            message: "Invalid phone number.",
           },
         });
       }
@@ -35,7 +35,7 @@ export default (userRepo) => {
      if (!ValidDateFormat(birthDate)) {
       return res.status(400).send({
         error: {
-          message: "Invalid birth date format. Use 'YYYY-MM-DD' format.",
+          message: "Invalid birth date.",
         },
       });
     }
@@ -50,6 +50,25 @@ export default (userRepo) => {
   const updateUser = (req, res) => {
     const id = req.params.id;
     const user = userRepo.updateUser(id, req.body);
+
+    const { lastName, firstName, birthDate, address, phone, email } = req.body;
+
+    if (!ValidDateFormat(birthDate)) {
+    return res.status(400).send({
+      error: {
+        message: "Invalid birth date.",
+        },
+      });
+    }
+    if (!ValidPhoneNumber(phone)) {
+      return res.status(400).send({
+        error: {
+          message: "Invalid phone number.",
+        }, 
+      });
+    }
+
+
 
     if (user) {
       return res.send({
@@ -82,12 +101,18 @@ export default (userRepo) => {
     const deletedUser = userRepo.deleteUser(id);
 
     if (deletedUser) {
-      return res.send({
+      res.status(200).send({
+        message: "User has been successfully deleted",
         meta: {
           _deleted: deletedUser
         }
       });
+    } else {
+      res.status(404).send({
+        message: "User was not found"
+      })
     }
+
 
     res.status(404).send({
       error: `User ${id} not found`
